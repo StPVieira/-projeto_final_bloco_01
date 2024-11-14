@@ -1,11 +1,13 @@
 package jogo.model;
 
+import vapor.controller.VaporController;
+
 public abstract class Principal {
 	private int id;
 	private int tipo;
 	private String nome;
 	private String desenvolvedor;
-	
+	VaporController jogos = new VaporController();
 	
 	public Principal(int id, int tipo, String nome, String desenvolvedor) {
 		this.id = id;
@@ -44,17 +46,6 @@ public abstract class Principal {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public void baixarJogo(int id) {
-		// Implementação incompleta, com classe controller devo verificar se o jogo existe na collection
-		
-		// possível nullpointerexception no momento
-		if(this.id == id) {
-			System.out.println("O jogo " + this.nome + " foi adquirido com sucesso! ");
-		} else { 
-			System.out.println("Esse jogo não existe no momento.");
-		}
 	}
 	
 	public void visualizar() {
