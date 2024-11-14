@@ -2,12 +2,25 @@ package vapor;
 
 import java.util.Scanner;
 
+import jogo.model.FreeToPlay;
+import jogo.model.PayToPlay;
+
+
 public class Menu {
 
 	public static void main(String[] args) {
-
+		
+		
+		PayToPlay p1 = new PayToPlay(2, 1, "Vigie Cachorros", "Ubimacia", 99.9f);
+		p1.visualizar();
+		p1.baixarJogo(2);
+		
+		FreeToPlay f1 = new FreeToPlay(3, 2, "Liga das Lendas", "Revolta Jogos", true);
+		f1.visualizar();
+		f1.baixarJogo(3);
+		
 		Scanner scanner = new Scanner(System.in);
-
+		
 		int opcao;
 
 		while (true) {
@@ -23,7 +36,7 @@ public class Menu {
 			System.out.println("            3 - Buscar jogo por ID                        ");
 			System.out.println("            4 - Atualizar dados do Jogo                   ");
 			System.out.println("            5 - Deletar jogo do Vapor                     ");
-			System.out.println("            6 - Comprar jogo                              ");
+			System.out.println("            6 - Adquirir jogo                             ");
 			System.out.println("            0 - Sair                                      ");
 			System.out.println("                                                          ");
 			System.out.println("**********************************************************");
