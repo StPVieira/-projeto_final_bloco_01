@@ -186,7 +186,7 @@ public class Menu {
 				keyPress();
 				break;
 			}
-	            pause(2000);
+	            pause(1000);
 		}
 	}
 		
