@@ -1,19 +1,27 @@
 package jogo.model;
 
-import vapor.controller.VaporController;
 
 public abstract class Principal {
 	private int id;
 	private int tipo;
 	private String nome;
 	private String desenvolvedor;
-	VaporController jogos = new VaporController();
+	private String genero;
 	
-	public Principal(int id, int tipo, String nome, String desenvolvedor) {
+	public Principal(int id, int tipo, String nome, String desenvolvedor, String genero) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.desenvolvedor = desenvolvedor;
+		this.genero = genero;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public String getDesenvolvedor() {
@@ -65,6 +73,7 @@ public abstract class Principal {
 		System.out.println("ID do jogo: " + this.id);
 		System.out.println("Nome do jogo: " + this.nome);
 		System.out.println("Nome do desenvolvedor: " + this.desenvolvedor);
+		System.out.println("Gênero: " + this.genero);
 		System.out.println("Tipo do jogo: " + tipo);
 		
 	}

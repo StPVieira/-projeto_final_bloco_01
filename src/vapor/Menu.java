@@ -17,7 +17,7 @@ public class Menu {
 		Scanner scanner = new Scanner(System.in);
 
 		int opcao, id, tipo;
-		String nome, desenvolvedor;
+		String nome, desenvolvedor, genero;
 		boolean microTransacoes;
 		float preco;
 
@@ -31,10 +31,12 @@ public class Menu {
 			System.out.println("                                                          ");
 			System.out.println("            1 - Adicionar jogo                            ");
 			System.out.println("            2 - Listar todos os Jogos                     ");
-			System.out.println("            3 - Buscar jogo por ID                        ");
-			System.out.println("            4 - Atualizar dados do Jogo                   ");
-			System.out.println("            5 - Deletar jogo do Vapor                     ");
-			System.out.println("            6 - Adquirir jogo                             ");
+			System.out.println("            3 - Listar jogos por gênero                   ");
+			System.out.println("            4 - Listar jogos por desenvolvedor            ");
+			System.out.println("            5 - Buscar jogo por ID                        ");
+			System.out.println("            6 - Atualizar dados do Jogo                   ");
+			System.out.println("            7 - Deletar jogo do Vapor                     ");
+			System.out.println("            8 - Adquirir jogo                             ");
 			System.out.println("            9 - Sair                                      ");
 			System.out.println("                                                          ");
 			System.out.println("**********************************************************");
@@ -61,8 +63,8 @@ public class Menu {
 				System.out.println("Escreva o nome do jogo: ");
 				nome = scanner.nextLine();
 				
-				System.out.println("Escreva o nome do desenvolvedor: ");
-				desenvolvedor = scanner.nextLine();
+				desenvolvedor = jogos.escolherDesenvolvedor();
+				genero = jogos.escolherGenero();
 
 				do {
 					System.out.println("Digite o tipo de jogo: (1 - P2P ou 2 - F2P)");
@@ -73,12 +75,12 @@ public class Menu {
 					case 1 -> {
 						System.out.println("Digite o preço do jogo: ");
 						preco = scanner.nextFloat();
-						jogos.cadastrar(new PayToPlay(jogos.gerarNumero(), tipo, nome, desenvolvedor, preco));
+						jogos.cadastrar(new PayToPlay(jogos.gerarNumero(), tipo, nome, desenvolvedor, genero, preco));
 					}
 					case 2 -> {
 						System.out.println("Informe se o jogo possui ou não microtransações (true - Possui ou false - Não possui): ");
 						microTransacoes = scanner.nextBoolean();
-						jogos.cadastrar(new FreeToPlay(jogos.gerarNumero(), tipo, nome, desenvolvedor, microTransacoes));
+						jogos.cadastrar(new FreeToPlay(jogos.gerarNumero(), tipo, nome, desenvolvedor, genero, microTransacoes));
 					}
 				}
 				keyPress();
@@ -89,6 +91,14 @@ public class Menu {
 				keyPress();
 				break;
 			case 3:
+				jogos.filtrarJogosPorGenero();
+				keyPress();
+				break;
+			case 4:
+				jogos.filtrarJogosPorDesenvolvedor();
+				keyPress();
+				break;
+			case 5:
 				System.out.println("Procurar jogo pelo ID \n\n");
 				System.out.println("Digite o ID do jogo: ");
 				id = scanner.nextInt();
@@ -96,7 +106,7 @@ public class Menu {
 				jogos.procurarPorId(id);
 				keyPress();
 				break;
-			case 4:
+			case 6:
 				System.out.println("Atualizar dados do jogo \n\n");
 				System.out.println("Digite o ID do jogo: ");
 				id = scanner.nextInt();
@@ -111,19 +121,20 @@ public class Menu {
 					System.out.println("Escreva o nome do jogo: ");
 					nome = scanner.nextLine();
 					
-					System.out.println("Escreva o nome do desenvolvedor: ");
-					desenvolvedor = scanner.nextLine();
+					desenvolvedor = jogos.escolherDesenvolvedor();
+					
+					genero = jogos.escolherGenero();
 					
 					switch(tipo) {
 						case 1 -> {
 							System.out.println("Digite o preço do jogo: ");
 							preco = scanner.nextFloat();
-							jogos.atualizar(new PayToPlay(id, tipo, nome, desenvolvedor, preco));
+							jogos.atualizar(new PayToPlay(id, tipo, nome, desenvolvedor, genero, preco));
 						}
 						case 2 -> {
 							System.out.println("Informe se o jogo possui ou não microtransações (true - Possui ou false - Não possui): ");
 							microTransacoes = scanner.nextBoolean();
-							jogos.atualizar(new FreeToPlay(id, tipo, nome, desenvolvedor, microTransacoes));
+							jogos.atualizar(new FreeToPlay(id, tipo, nome, desenvolvedor, genero, microTransacoes));
 						}
 						default -> {
 							System.out.println("Tipo de jogo inválido!");
@@ -135,7 +146,7 @@ public class Menu {
 				
 				keyPress();
 				break;
-			case 5:
+			case 7:
 				System.out.println("Excluir jogo do Vapor \n\n");
 				
 				System.out.println("Digite o ID do jogo: ");
@@ -145,7 +156,9 @@ public class Menu {
 
 				keyPress();
 				break;
-			case 6:
+				
+				
+			case 8:
 				System.out.println("Comprar jogo \n\n");
 				
 				System.out.println("Digite o ID do jogo:");
@@ -165,15 +178,18 @@ public class Menu {
 				}
 				
 				keyPress();
-				break;
+				break;		
+				
 			default:
 				System.out.println("\nOpção inválida!\n");
 
 				keyPress();
 				break;
 			}
+	            pause(2000);
 		}
 	}
+		
 
 	public static void keyPress() {
 		try {
@@ -191,6 +207,15 @@ public class Menu {
 		System.out.println("github.com/StPVieira                                      ");
 		System.out.println("**********************************************************");
 
+	}
+	
+	public static void pause(long milissegundos) {
+	    try {
+	        Thread.sleep(milissegundos);
+	    } catch (InterruptedException e) {
+	        Thread.currentThread().interrupt();
+	        System.err.println("Thread interrompida durante o pause de " + milissegundos + " milissegundos.");
+	    }
 	}
 
 }

@@ -4,8 +4,8 @@ public class FreeToPlay extends Principal {
 	
 	private boolean microTransacoes;
 
-	public FreeToPlay(int id, int tipo, String nome, String desenvolvedor, boolean microTransacoes) {
-		super(id, tipo, nome, desenvolvedor);
+	public FreeToPlay(int id, int tipo, String nome, String desenvolvedor, String genero, boolean microTransacoes) {
+		super(id, tipo, nome, desenvolvedor, genero);
 		this.setMicroTransacoes(microTransacoes);
 	}
 

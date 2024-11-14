@@ -3,8 +3,8 @@ package jogo.model;
 public class PayToPlay extends Principal {
 	private float preco;
 
-	public PayToPlay(int id, int tipo, String nome, String desenvolvedor, float preco) {
-		super(id, tipo, nome, desenvolvedor);
+	public PayToPlay(int id, int tipo, String nome, String desenvolvedor, String genero, float preco) {
+		super(id, tipo, nome, desenvolvedor, genero);
 		this.preco = preco;
 	}
 
